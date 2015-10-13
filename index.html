@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+
+<html>
+<head>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/expiredtofu.css">
+  <title>ExpiredTofu</title>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+</head>
+<body>
+
+<script type="text/javascript" src="scripts/instafeed.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="css/tofu_font-ie7.css"><![endif]-->
+<link rel="stylesheet" href="css/tofu_font.css">
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'user',
+        userId: 1794937122,
+        accessToken: '1794937122.dafa17f.8731569a93aa40f98335915e34f0cbe8',
+        resolution: 'low_resolution',
+        limit: 12,
+        template: '<a class="image" href="{{link}}"><img src="{{image}}" /><div class="imageinfo"><span class="likes icon-heart">{{likes}}</span>&nbsp;<span class="comments icon-comment">{{comments}}</span></div></a>'
+    });
+    feed.run();
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+        var userScrolled = false;
+        $(window).scroll(function() {
+            userScrolled = true;
+
+        });
+
+        setInterval(function() {
+            if (userScrolled) {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+                    // call feed.next() once the page reaches the bottom
+                    feed.next();
+
+                }
+                userScrolled = false;
+            }
+        }, 300);
+
+    });
+</script>
+
+
+<div id="instafeed"></div>
+
+</body>
+</html>
